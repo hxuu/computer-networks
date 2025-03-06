@@ -1,0 +1,19 @@
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.1.1     YES NVRAM  up                    up      
+FastEthernet0/1            unassigned      YES NVRAM  administratively down down    
+Serial1/0                  10.1.1.2        YES NVRAM  up                    down    
+Serial1/1                  unassigned      YES NVRAM  administratively down down    
+
+Serial1/2                  unassigned      YES NVRAM  administratively down down    
+Serial1/3                  unassigned      YES NVRAM  administratively down down    
+R1#
+*Mar  1 00:01:
+================================================================================
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.2.1     YES manual up                    up      
+FastEthernet0/1            unassigned      YES unset  administratively down down    
+Serial1/0                  10.1.1.1        YES manual up                    down    
+Serial1/1                  10.2.2.1        YES manual up                    down    
+Serial1/2                  unassigned      YES unset  administratively down down    
+Serial1/3                  unassigned      YES unset  administratively down down    
+================================================================================

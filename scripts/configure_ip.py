@@ -30,11 +30,11 @@ def configure_ip(port, interfaces):
         output = net_connect.send_config_set(config_commands)
 
     output = net_connect.send_command('show ip int brief')
-    print('================================================================================')
     print(output)
     print('================================================================================')
-    output = net_connect.send_command('copy running-config startup-config')
-    output = net_connect.send_command('write memory')
+    net_connect.disconnect()
+    # net_connect.send_command('copy running-config startup-config')
+    # net_connect.send_command('write memory')
 
 
 # testing
