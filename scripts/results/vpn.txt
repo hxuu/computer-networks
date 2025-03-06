@@ -1,0 +1,86 @@
+-- Verfication step for create_acl (r1) --
+Extended IP access list 100
+    10 permit ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255
+================================================================================
+-- Verfication step for create_acl (r3) --
+Extended IP access list 100
+    10 permit ip 192.168.3.0 0.0.0.255 192.168.1.0 0.0.0.255
+================================================================================
+-- Verfication step for phase1 (r1) --
+Nothing to show here...
+================================================================================
+-- Verfication step for phase1 (r3) --
+Nothing to show here...
+================================================================================
+-- Verfication step for phase2 (r1) --
+
+interface: Serial1/0
+    Crypto map tag: VPN-MAP, local addr 10.1.1.2
+
+   protected vrf: (none)
+   local  ident (addr/mask/prot/port): (192.168.1.0/255.255.255.0/0/0)
+   remote ident (addr/mask/prot/port): (192.168.3.0/255.255.255.0/0/0)
+   current_peer 10.2.2.2 port 500
+     PERMIT, flags={origin_is_acl,}
+    #pkts encaps: 0, #pkts encrypt: 0, #pkts digest: 0
+    #pkts decaps: 0, #pkts decrypt: 0, #pkts verify: 0
+    #pkts compressed: 0, #pkts decompressed: 0
+    #pkts not compressed: 0, #pkts compr. failed: 0
+    #pkts not decompressed: 0, #pkts decompress failed: 0
+    #send errors 0, #recv errors 0
+
+     local crypto endpt.: 10.1.1.2, remote crypto endpt.: 10.2.2.2
+     path mtu 1500, ip mtu 1500, ip mtu idb Serial1/0
+     current outbound spi: 0x0(0)
+
+     inbound esp sas:
+
+     inbound ah sas:
+
+     inbound pcp sas:
+
+     outbound esp sas:
+
+     outbound ah sas:
+
+     outbound pcp sas:
+R1#
+*M
+================================================================================
+-- Verfication step for phase2 (r3) --
+
+interface: Serial1/0
+    Crypto map tag: VPN-MAP, local addr 10.2.2.2
+
+   protected vrf: (none)
+   local  ident (addr/mask/prot/port): (192.168.3.0/255.255.255.0/0/0)
+   remote ident (addr/mask/prot/port): (192.168.1.0/255.255.255.0/0/0)
+   current_peer 10.1.1.2 port 500
+     PERMIT, flags={origin_is_acl,}
+    #pkts encaps: 0, #pkts encrypt: 0, #pkts digest: 0
+    #pkts decaps: 0, #pkts decrypt: 0, #pkts verify: 0
+    #pkts compressed: 0, #pkts decompressed: 0
+    #pkts not compressed: 0, #pkts compr. failed: 0
+    #pkts not decompressed: 0, #pkts decompress failed: 0
+    #send errors 0, #recv errors 0
+
+     local crypto endpt.: 10.2.2.2, remote crypto endpt.: 10.1.1.2
+     path mtu 1500, ip mtu 1500, ip mtu idb Serial1/0
+     current outbound spi: 0x0(0)
+
+     inbound esp sas:
+
+     inbound ah sas:
+
+     inbound pcp sas:
+
+     outbound esp sas:
+
+     outbound ah sas:
+
+     outbound pcp sas:
+R3#
+*M
+================================================================================
+
+
