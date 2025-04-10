@@ -80,7 +80,7 @@ Interface POS2/0/0:
 
 ## TP MPLS
 
-![topology](screenshots/2025-04-07-08-44-38.png)
+![toplogoy](screenshots/2025-04-10-09-57-03.png)
 
 ### 1. Configurer Routage
 
