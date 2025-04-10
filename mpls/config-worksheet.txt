@@ -1,0 +1,9 @@
+end
+enable
+configure terminal
+interface f0/0
+mpls ip
+interface f0/1
+mpls ip
+end
+
