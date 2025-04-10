@@ -191,14 +191,14 @@ Prefix              Next Hop             Interface
 ### 5. Analyser les Labels via wireshark.
 
 - Inside labels range (mpls range):
-![traffic-ping-mpls](../screenshots/2025-04-10-09-46-04.png)
+![traffic-ping-mpls](screenshots/2025-04-10-09-46-04.png)
 
 - Outside labels range (NON mpls range):
-![traffic-ping-NO_MPLS](../screenshots/2025-04-10-09-51-59.png)
+![traffic-ping-NO_MPLS](screenshots/2025-04-10-09-51-59.png)
 
 ### 6. Analyser LDP via wireshark.
 
-![ldp-traffic](../screenshots/2025-04-10-09-49-28.png)
+![ldp-traffic](screenshots/2025-04-10-09-49-28.png)
 
 > [!NOTE]
 > the pcaps are inside the `results` directory with naming convention: *source-dest-typeof_traffic*
