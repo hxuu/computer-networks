@@ -1,0 +1,24 @@
+diagram:
+  fill: none
+title:
+  text: "Minimalistic Demo"
+  fill: none
+  logoFill: none
+  author: netpanda
+iconsDefaults: &iconsDefaults
+  icon: router
+  iconFamily: cisco
+  fill: none
+icons:
+  CE1: { <<: *iconsDefaults, gns3_template: "Cisco IOSv L3", x: 0, y: 0 }
+  PE1: { <<: *iconsDefaults, gns3_template: "Cisco IOSv L3", x: 3, y: 0 }
+  P1: { <<: *iconsDefaults, gns3_template: "Cisco IOSv L3", x: 6, y: 0 }
+  P2: { <<: *iconsDefaults, gns3_template: "Cisco IOSv L3", x: 9, y: 0 }
+  PE2: { <<: *iconsDefaults, gns3_template: "Cisco IOSv L3", x: 0, y: 3 }
+  CE2: { <<: *iconsDefaults, gns3_template: "Cisco IOSv L3", x: 3, y: 3 }
+connections:
+  - { endpoints: [CE1:f0/0, PE1:f0/1] }
+  - { endpoints: [PE1:f0/0, P1:f0/1] }
+  - { endpoints: [P1:f0/0, P2:f0/1] }
+  - { endpoints: [P2:f0/0, PE2:f0/1] }
+  - { endpoints: [PE2:f0/0, CE2:f0/1] }

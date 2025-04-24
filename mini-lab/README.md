@@ -37,3 +37,89 @@ To automate network configuration through an intuitive web interface by uploadin
 ### Developer specific
 
 check `./TODO.md` to see what's next to be implemented.
+
+### References
+
+- https://gns3-server.readthedocs.io/en/stable/file_format.html
+- https://github.com/cidrblock/drawthe.net
+- https://davidban77.hashnode.dev/making-your-network-topology-come-to-virtual-life-with-drawthenet-and-gns3fy-ck9kjsujb004jzss19c5stx6t
+
+### Schema reference
+
+the .gns3 file is a json file that contains nodes and links:
+
+1. nodes is a list that contains a list of nodes. Each node contains the following info:
+- `node_id`
+- name
+- console (port number)
+- `port_name_format`  ('Ethernet{0}')
+- properties (which has key image to decide if it's a router or switch)
+    - for example: `'image': 'c2691-adventerprisek9-mz.124-25d.image',`
+
+```
+[{'aux': None,
+  'aux_type': 'none',
+  'compute_id': 'local',
+  'console': 5000,
+  'console_auto_start': False,
+  'console_type': 'telnet',
+  'custom_adapters': [],
+  'first_port_name': None,
+  'height': 60,
+  'label': {'rotation': 0,
+            'style': 'font-family: TypeWriter;font-size: 10.0;font-weight: '
+                     'bold;fill: #000000;fill-opacity: 1.0;',
+            'text': 'CE1',
+            'x': 14,
+            'y': -25},
+  'locked': False,
+  'name': 'CE1',
+  'node_id': 'db7d1d0c-8d39-4b52-b1c6-8f0528078963',
+  'node_type': 'dynamips',
+  'port_name_format': 'Ethernet{0}',
+  'port_segment_size': 0,
+  'properties': {'auto_delete_disks': True,
+                 'builtin': False,
+                 'chassis': None,
+                 'clock_divisor': 8,
+                 'created_at': '2025-04-07T08:01:46',
+                 'disk0': 0,
+                 'disk1': 0,
+                 'dynamips_id': 1,
+                 'exec_area': 64,
+```
+
+2. links is a list that contains a list of links between nodes (which is also a list). Each link contains the following info:
+- nodes (a list containing info about the linked nodes)
+    - `node_id`
+    - label (which is an object that contains 'text' to mark the interface linked)
+
+example result:
+```
+[{'filters': {},
+  'link_id': '00f55b33-08a2-41ad-8b50-467379fb6240',
+  'link_style': {'color': None, 'type': None, 'width': None},
+  'nodes': [{'adapter_number': 0,
+             'label': {'rotation': 0,
+                       'style': 'font-family: TypeWriter;font-size: '
+                                '10.0;font-weight: bold;fill: '
+                                '#000000;fill-opacity: 1.0;',
+                       'text': 'f0/0',
+                       'x': 69,
+                       'y': 30},
+             'node_id': 'db7d1d0c-8d39-4b52-b1c6-8f0528078963',
+             'port_number': 0},
+            {'adapter_number': 0,
+             'label': {'rotation': 0,
+                       'style': 'font-family: TypeWriter;font-size: '
+                                '10.0;font-weight: bold;fill: '
+                                '#000000;fill-opacity: 1.0;',
+                       'text': 'f0/1',
+                       'x': -32,
+                       'y': 30},
+             'node_id': '2184ea02-f5c3-43e3-9a5f-d5740db8a273',
+             'port_number': 1}],
+  'suspend': False},
+```
+
+

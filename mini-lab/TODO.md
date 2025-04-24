@@ -15,9 +15,14 @@ This file outlines the key tasks required to complete the mini-lab project for *
 
 ## 🔄 GNS3 File Handling
 
-- [ ] Implement file upload route
-- [ ] Validate `.gns3` file type
-- [ ] Store uploaded file in `/uploads`
+- [x] Implement file upload route
+- [x] Validate `.gns3` file type
+- [x] Store uploaded file in `/uploads`
+- [ ] View `.gns3` as topology:
+    - [x] Parse the .gns3 as a json file and extract useful info
+    - [x] Create the YAML file to be used with drawthe.net
+    - [ ] Convert the YAML file into a picture
+    - [ ] Render that picture to the user
 - [ ] Parse `.gns3` JSON to extract:
   - [ ] Nodes (names, types, positions, images)
   - [ ] Links (connections between nodes)
