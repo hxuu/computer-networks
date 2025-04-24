@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, request, send_from_directory, abort, render_template_string
+from flask import Blueprint, request, send_from_directory, abort, render_template_string, render_template
 
 upload_bp = Blueprint("upload_bp", __name__)
 
@@ -29,27 +29,12 @@ def upload():
     else:
         return "Invalid file type. Only .gns3 files are allowed.", 400
 
-@upload_bp.route("/view/<filename>")
-def view_file(filename):
-    try:
-        # Ensure only .gns3 files are served
-        if not filename.endswith(".gns3"):
-            abort(404)  # Return 404 if not a .gns3 file
-        filepath = os.path.join(UPLOAD_FOLDER, filename)
+@upload_bp.route("/view")
+def view_file():
+    # if not filename.endswith(".gns3"):
+    #     abort(404)
 
-        # Read the file contents and display as text
-        with open(filepath, "r") as f:
-            file_contents = f.read()
-
-        return render_template_string("""
-            <html>
-                <body>
-                    <h2>Viewing {{ filename }}</h2>
-                    <pre>{{ file_contents }}</pre>
-                </body>
-            </html>
-        """, filename=filename, file_contents=file_contents)
-
-    except FileNotFoundError:
-        abort(404)  # Return 404 if file does not exist
+    # This route is static for now (only serves the generated png file from drawthe.net website)
+    # Instead of reading the file, just render a template
+    return render_template("topology_view.html", image_path="assets/demo.png")
 
