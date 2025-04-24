@@ -21,8 +21,8 @@ This file outlines the key tasks required to complete the mini-lab project for *
 - [ ] View `.gns3` as topology:
     - [x] Parse the .gns3 as a json file and extract useful info
     - [x] Create the YAML file to be used with drawthe.net
-    - [ ] Convert the YAML file into a picture
-    - [ ] Render that picture to the user
+    - [x] Convert the YAML file into a picture
+    - [x] Render that picture to the user
 - [ ] Parse `.gns3` JSON to extract:
   - [ ] Nodes (names, types, positions, images)
   - [ ] Links (connections between nodes)
