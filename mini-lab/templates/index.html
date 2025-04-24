@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GNS3 Automation Interface</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <h1>Welcome to GNS3 Config Automator</h1>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="gns3file" accept=".gns3" required />
+    <button type="submit">Upload GNS3 File</button>
+  </form>
+</body>
+</html>
+
