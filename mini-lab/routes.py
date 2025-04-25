@@ -1,6 +1,7 @@
 import os
 import json
-from flask import Blueprint, request, send_from_directory, abort, render_template_string, render_template
+from flask import Blueprint, request, send_from_directory, abort, render_template_string, render_template, redirect, url_for, flash
+
 from utils.parse_gns3_yaml import parse_gns3_yaml
 from utils.extract_console_info import extract_console_info
 
@@ -75,14 +76,14 @@ def view_file(filename):
                 <td>{device['port']}</td>
                 <td>{device['type']}</td>
                 <td>
-                    <select name="config_{device['name']}">
-                        <option value="">-- Select --</option>'''
+                    <select name="{device['name']}:{device['port']}">
+                        <option value="testingpurposesonly.py">-- Select --</option>'''
         for option in config_options:
             form_html += f'<option value="{option}">{option}</option>'
-        form_html += '''</select>
+        form_html += f'''</select>
                 </td>
                 <td>
-                    <input type="file" name="file_{device['name']}" />
+                    <input type="file" name="config_{device['name']}" />
                 </td>
             </tr>
         '''
@@ -99,3 +100,22 @@ def view_file(filename):
 
     return render_template("topology_view.html", svg_content=svg_content, form_html=form_html)
 
+
+@upload_bp.route("/apply-config", methods=["POST"])
+def apply_config():
+    for config_name, script in request.form.items():
+        print(f"{config_name} = {script}")
+    # for file_devicename, blob in request.files.items():
+    #     content = blob.read().decode("utf-8") # works for text based content only
+    #     print(f"{file_devicename} = {content}")
+    #     break
+
+    for (hostname_port, script), (_, blob) in zip(request.form.items(), request.files.items()):
+        config_data = blob.read().decode("utf-8") # works for text based content only
+        splt = hostname_port.split(':')
+        hostname, port = splt[0], splt[1]
+
+        # Pass those info to the automation tool with the automation script name
+        # TODO: ensure the script name is safe (not for now)
+        break
+    return "Request received and printed.", 200

@@ -37,6 +37,7 @@ This file outlines the key tasks required to complete the mini-lab project for *
 
 ## 🚀 Backend Automation
 
+- [x] Parse the config information to be passed to `automation.py`
 - [ ] Build `automation.py` with:
   - [ ] Netmiko SSH login (from parsed `.gns3`)
 
