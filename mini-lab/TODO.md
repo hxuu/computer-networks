@@ -18,25 +18,12 @@ This file outlines the key tasks required to complete the mini-lab project for *
 - [x] Implement file upload route
 - [x] Validate `.gns3` file type
 - [x] Store uploaded file in `/uploads`
-- [ ] View `.gns3` as topology:
+- [x] View `.gns3` as topology:
     - [x] Parse the .gns3 as a json file and extract useful info
     - [x] Create the YAML file to be used with drawthe.net
     - [x] Convert the YAML file into a picture
     - [x] Render that picture to the user
-- [ ] Parse `.gns3` JSON to extract:
-  - [ ] Nodes (names, types, positions, images)
-  - [ ] Links (connections between nodes)
-  - [ ] SVG GUI elements
-  - [ ] SSH/console connection info (host, port, credentials)
-
----
-
-## 🧠 Topology Rendering
-
-- [ ] Generate browser-friendly SVG topology
-- [ ] Position nodes based on GUI coordinates
-- [ ] Make nodes clickable to open configuration panels
-- [ ] Show node type and possible actions on click
+- [ ] Parse `.gns3` JSON to extract SSH/console connection info (host, port, credentials)
 
 ---
 
@@ -51,5 +38,5 @@ This file outlines the key tasks required to complete the mini-lab project for *
 ## 🚀 Backend Automation
 
 - [ ] Build `automation.py` with:
-  - [ ] Netmiko SSH login (from parsed `.gn
+  - [ ] Netmiko SSH login (from parsed `.gns3`)
 
