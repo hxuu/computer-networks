@@ -4,7 +4,7 @@ title:
   text: "Minimalistic Demo"
   fill: none
   logoFill: none
-  author: netpanda
+  author: hxuu
 iconsDefaults: &iconsDefaults
   icon: router
   iconFamily: cisco

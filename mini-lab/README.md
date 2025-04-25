@@ -43,6 +43,7 @@ check `./TODO.md` to see what's next to be implemented.
 - https://gns3-server.readthedocs.io/en/stable/file_format.html
 - https://github.com/cidrblock/drawthe.net
 - https://davidban77.hashnode.dev/making-your-network-topology-come-to-virtual-life-with-drawthenet-and-gns3fy-ck9kjsujb004jzss19c5stx6t
+- https://www.reddit.com/r/sysadmin/comments/bdvfo3/automated_way_of_creating_a_network_topology_from/?rdt=65230
 
 ### Schema reference
 
