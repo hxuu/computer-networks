@@ -23,15 +23,15 @@ This file outlines the key tasks required to complete the mini-lab project for *
     - [x] Create the YAML file to be used with drawthe.net
     - [x] Convert the YAML file into a picture
     - [x] Render that picture to the user
-- [ ] Parse `.gns3` JSON to extract SSH/console connection info (host, port, credentials)
+- [x] Parse `.gns3` JSON to extract SSH/console connection info (host, port, credentials)
 
 ---
 
 ## ⚙️ Automation Interface
 
-- [ ] Create HTML/JS frontend to display config options per device
-- [ ] Display only context-relevant actions (e.g., VLANs only for switches)
-- [ ] Add form for custom commands if needed
+- [x] Centralize the parsing algorithm for yaml, info table conversion
+- [x] Create sub parts (info table, config options) and append to global html
+- [x] Add form for configuration alongside file to upload
 
 ---
 

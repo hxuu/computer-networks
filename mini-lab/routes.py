@@ -1,6 +1,8 @@
 import os
+import json
 from flask import Blueprint, request, send_from_directory, abort, render_template_string, render_template
-from utils import parse_gns3_yaml
+from utils.parse_gns3_yaml import parse_gns3_yaml
+from utils.extract_console_info import extract_console_info
 
 upload_bp = Blueprint("upload_bp", __name__)
 
@@ -30,23 +32,70 @@ def upload():
     else:
         return "Invalid file type. Only .gns3 files are allowed.", 400
 
+
 @upload_bp.route("/view/<filename>")
 def view_file(filename):
     if not filename.endswith(".gns3"):
         abort(404)
 
-    # This route is static for now (only serves the generated png file from drawthe.net website)
-    yaml_output = parse_gns3_yaml.parse_gns3_json(os.path.join(UPLOAD_FOLDER, filename))
-    file_path = os.path.join(UPLOAD_FOLDER, filename.split('.')[0] + '.yaml')
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    with open(file_path, 'r') as file:
+        data = json.load(file)
 
-    print(file_path)
-    with open(file_path, 'w') as file:
+    yaml_output = parse_gns3_yaml(data)
+    yaml_path = os.path.join(UPLOAD_FOLDER, filename.split('.')[0] + '.yaml')
+    with open(yaml_path, 'w') as file:
         file.write(yaml_output)
-    print('YAML file written successfully!')
 
-    # Instead of reading the file, just render a template
+    console_info = extract_console_info(data)
+
+    config_options = ["configure_ip.py", "rip.py", "vpn.py"]
+
+    form_html = '''
+    <h2>Configuration Options</h2>
+    <form method="POST" action="/apply-config" enctype="multipart/form-data">
+        <table>
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>Host</th>
+                    <th>Port</th>
+                    <th>Protocol</th>
+                    <th>Select Configuration</th>
+                    <th>Upload Config File</th>
+                </tr>
+            </thead>
+            <tbody>
+    '''
+    for device in console_info:
+        form_html += f'''
+            <tr>
+                <td>{device['name']}</td>
+                <td>{device['host']}</td>
+                <td>{device['port']}</td>
+                <td>{device['type']}</td>
+                <td>
+                    <select name="config_{device['name']}">
+                        <option value="">-- Select --</option>'''
+        for option in config_options:
+            form_html += f'<option value="{option}">{option}</option>'
+        form_html += '''</select>
+                </td>
+                <td>
+                    <input type="file" name="file_{device['name']}" />
+                </td>
+            </tr>
+        '''
+    form_html += '''
+            </tbody>
+        </table>
+        <button type="submit">Apply Configurations</button>
+    </form>
+    '''
+
     image_path = f"assets/{filename.split('.')[0]}.svg"
     with open(os.path.join("static", image_path)) as f:
         svg_content = f.read()
-    return render_template("topology_view.html", svg_content=svg_content)
+
+    return render_template("topology_view.html", svg_content=svg_content, form_html=form_html)
 

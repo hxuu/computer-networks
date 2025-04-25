@@ -11,13 +11,65 @@
             font-family: 'Poppins', sans-serif;
             text-align: center;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 80%;
+            margin-top: 40px;
+        }
+
+        .topology {
+            flex: 1;
+            min-width: 50%;
+        }
+
+        .form-container {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
         </style>
     </head>
     <body>
-        <h1>Topology: (filler for now...)</h1>
-        <p>This is the topology you generated:</p>
-        {{ svg_content|safe }}
+        <div class="container">
+            <div class="form-container">
+                {{ form_html|safe }}
+            </div>
+
+            <div class="topology">
+                <h1>Topology</h1>
+                <p>This is the topology you generated:</p>
+                {{ svg_content|safe }}
+            </div>
+        </div>
     </body>
 </html>
 

@@ -1,9 +1,6 @@
 import json
 
-def parse_gns3_json(json_file_path):
-    with open(json_file_path, 'r') as f:
-        data = json.load(f)
-
+def parse_gns3_yaml(data):
     nodes = data.get('topology', {}).get('nodes', [])
     # drawings = data.get('topology', {}).get('drawings', [])
     # from pprint import pprint
@@ -72,7 +69,7 @@ def parse_gns3_json(json_file_path):
 
 # Example usage
 if __name__ == '__main__':
-    yaml_output = parse_gns3_json('mpls.gns3')
+    yaml_output = parse_gns3_yaml('mpls.gns3')
     with open('mpls.yaml', 'w') as file:
         file.write(yaml_output)
     print('YAML file written successfully!')

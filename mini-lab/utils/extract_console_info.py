@@ -1,9 +1,6 @@
 import json
 
-def extract_console_info(json_file_path):
-    with open(json_file_path, 'r') as f:
-        data = json.load(f)
-
+def extract_console_info(data):
     nodes = data.get('topology', {}).get('nodes', [])
 
     connection_info = []
