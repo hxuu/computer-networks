@@ -39,9 +39,9 @@ This file outlines the key tasks required to complete the mini-lab project for *
 
 - [x] Parse the config information to be passed to `automation.py`
 - [ ] Build `automation.py` with:
-  - [ ] Group the config files content (commands) and their related information (name,port) in a new file for the automation script
-  - [ ] Modify already existing scripts (rip.py...etc) to have a single interface of configuration (take a config file, parse into commands...etc)
-  - [ ] Unify the experience with `automation.py` (handle case by case)
-  - [ ] Pass everything to the `automation.py` script
+  - [x] Group the config files content (commands) and their related information (name,port) in a new file for the automation script
+  - [x] Modify already existing scripts (rip.py...etc) to have a single interface of configuration (take a config file, parse into commands...etc)
+  - [x] Unify the experience with `automation.py` (handle case by case)
+  - [x] Pass everything to the `automation.py` script
   - [ ] Ensure automation.py gives feedback on state of configuration
 

@@ -117,5 +117,24 @@ def apply_config():
 
         # Pass those info to the automation tool with the automation script name
         # TODO: ensure the script name is safe (not for now)
+        try:
+            config_obj = json.loads(config_data)  # config must be JSON
+        except json.JSONDecodeError:
+            return "Invalid JSON", 400
+
+        if script == "configure_ip":
+            run_configure_ip(port, config_obj)
+
+        elif script == "rip":
+            # expect a list of router configs
+            run_rip(config_obj)
+
+        elif script == "vpn":
+            # expect dict with 'acl' and 'peers'
+            run_vpn(config_obj['acl'], config_obj['peers'])
+
+        else:
+            return f"Unknown script: {script}", 400
+
         break
-    return "Request received and printed.", 200
+    return "Configuration applied.", 200
